@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import innerLight from './photos/inner-light.webp';
 import eliya from './photos/eliya.webp';
 import './site.css';
@@ -31,12 +31,38 @@ function Diamond({ className = '' }: { className?: string }) {
 }
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOutside = (event: Event) => {
+      if (event.target instanceof Node && !headerRef.current?.contains(event.target)) setMenuOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    const desktop = window.matchMedia('(min-width: 1051px)');
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false); };
+    document.addEventListener('pointerdown', closeOutside);
+    document.addEventListener('focusin', closeOutside);
+    document.addEventListener('keydown', closeOnEscape);
+    desktop.addEventListener('change', closeOnDesktop);
+    closeOnDesktop();
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside);
+      document.removeEventListener('focusin', closeOutside);
+      document.removeEventListener('keydown', closeOnEscape);
+      desktop.removeEventListener('change', closeOnDesktop);
+    };
+  }, [menuOpen]);
   return <div className="eliya-site" dir="rtl" lang="he">
     <a className="skip-link" href="#main">דלג לתוכן</a>
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="אלייה, חזרה לראש העמוד"><Diamond /><span><strong>אלייה</strong><small>טיפול רגשי ואנרגטי</small></span></a>
-        <button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'סגירת תפריט ×' : 'תפריט ☰'}</button>
+        <a className="brand" href="#top" title="חזרה לראש העמוד" onClick={() => setMenuOpen(false)}><Diamond /><span><strong>אלייה</strong><small>טיפול רגשי ואנרגטי</small></span></a>
+        <button className="menu-toggle" ref={menuButtonRef} aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(open => !open)}>{menuOpen ? 'סגירת תפריט ×' : 'תפריט ☰'}</button>
         <nav id="main-nav" className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="ניווט ראשי">
           {nav.map(([label, id]) => <a key={id} href={'#' + id} onClick={() => setMenuOpen(false)}>{label}</a>)}
           <a className="button gift-button nav-guide" href="/guide2" onClick={() => setMenuOpen(false)}>מדריך במתנה <span aria-hidden="true">↓</span></a>
