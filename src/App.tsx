@@ -91,6 +91,7 @@ export function App() {
         </div>
       </section>
 
+      <section className="section guide-gift-section" aria-labelledby="gift-title"><div className="container guide-gift-grid"><div><p className="eyebrow">רגע לעצמך · מדריך במתנה</p><h2 id="gift-title">החיים ממשיכים. ומה איתך?</h2><p>חמש עצירות קצרות לכתיבה ולהקשבה פנימית. לתת מילים למה שחסר ולבחור צעד קטן שמרגיש שלך.</p></div><a className="button button-primary" href="/guide2">למדריך החינמי <Arrow /></a></div></section>
       <section className="section faq-section" id="questions" aria-labelledby="questions-title">
         <div className="container faq-grid"><div className="section-heading"><p className="eyebrow">לפני שעושים צעד</p><h2 id="questions-title">מותר לבוא<br />עם שאלות.</h2><p>הנה כמה דברים שאפשר לדעת כבר עכשיו. את כל השאר אפשר לשאול אותי.</p><ContactLink>יש לי שאלה לאלייה</ContactLink></div>
           <div className="faq-list">{faqs.map(([q, a]) => <details key={q}><summary>{q}<span className="faq-plus" aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div>

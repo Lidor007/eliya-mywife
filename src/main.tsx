@@ -1,10 +1,10 @@
 import React from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { App } from './App';
+import { Site } from './Site';
 
 const root = document.getElementById('root')!;
 if (root.hasChildNodes()) {
-  hydrateRoot(root, <App />);
+  hydrateRoot(root, <Site path={window.location.pathname} />);
 } else {
-  createRoot(root).render(<App />);
+  createRoot(root).render(<Site path={window.location.pathname} />);
 }
