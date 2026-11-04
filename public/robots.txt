@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eliya-mywife.vercel.app/sitemap.xml

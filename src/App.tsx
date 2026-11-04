@@ -55,7 +55,7 @@ export function App() {
             <p className="quiet-note">אפשר להתחיל בשיחה. לא צריך להגיע עם כל התשובות.</p>
           </div>
           <figure className="hero-visual">
-            <div className="image-frame"><img src={innerLight} width="1000" height="1333" alt="איור של גביש מואר לצד ענף זית, בהשראת היהלום הפנימי" fetchPriority="high" /><span className="visual-label">האור שבך, מתחת לכל השכבות</span></div>
+            <div className="image-frame"><img src={innerLight} width="1000" height="1333" alt="איור של גביש מואר לצד ענף זית, בהשראת היהלום הפנימי" loading="eager" /><span className="visual-label">האור שבך, מתחת לכל השכבות</span></div>
             <figcaption><span className="tiny-diamond">◇</span> איור בהשראת הגישה של אלייה</figcaption>
           </figure>
         </div>
