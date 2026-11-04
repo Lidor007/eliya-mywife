@@ -27,7 +27,7 @@ function ContactLink({ children = 'בואו נדבר על הדרך שלך', clas
   return <a className={'button button-primary ' + className} href={contactUrl} target="_blank" rel="noopener noreferrer">{children}<Arrow /></a>;
 }
 function Diamond({ className = '' }: { className?: string }) {
-  return <svg className={className} viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M14 13h36l11 17-29 30L3 30l11-17Z M3 30h58M14 13l18 47L50 13M14 13l18 17 18-17" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" /></svg>;
+  return <svg className={className} width="36" height="36" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M14 13h36l11 17-29 30L3 30l11-17Z M3 30h58M14 13l18 47L50 13M14 13l18 17 18-17" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" /></svg>;
 }
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);

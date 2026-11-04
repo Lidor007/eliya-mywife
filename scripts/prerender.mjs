@@ -2,7 +2,19 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { render } from '../.prerender/entry-server.js';
 
 const output = new URL('../dist/', import.meta.url);
-const template = await readFile(new URL('index.html', output), 'utf8');
+let template = await readFile(new URL('index.html', output), 'utf8');
+// Ship the complete design with the prerendered document. A stale or blocked
+// stylesheet request must not leave the page (and its SVGs) unstyled.
+const stylesheets = [...template.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)];
+if (!stylesheets.length) throw new Error('Missing build stylesheet');
+for (const [tag] of stylesheets) {
+  const href = tag.match(/href="([^"]+)"/)?.[1];
+  if (!href?.startsWith('/assets/') || !href.endsWith('.css') || href.includes('..')) {
+    throw new Error('Unexpected build stylesheet: ' + href);
+  }
+  const css = await readFile(new URL('.' + href, output), 'utf8');
+  template = template.replace(tag, () => '<style data-site-css>' + css.replace(/<\/style/gi, '<\\/style') + '</style>');
+}
 const placeholder = '<div id="root"></div>';
 if (!template.includes(placeholder)) throw new Error('Missing prerender root');
 function inject(html, path) {
