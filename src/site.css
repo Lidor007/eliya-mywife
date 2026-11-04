@@ -18,3 +18,6 @@ h1,h2{letter-spacing:-.4px}
 
 /* Keep decorative illustration within the brand palette. */
 .image-frame img,.guide-cover img{filter:grayscale(1);mix-blend-mode:luminosity}
+/* Keep every menu action reachable on short and landscape viewports. */
+@media(max-width:1050px){.main-nav{max-height:calc(100vh - 88px);max-height:calc(100dvh - 88px);overflow-y:auto;overscroll-behavior:contain}}
+@media(max-width:767px){.main-nav{max-height:calc(100vh - 76px);max-height:calc(100dvh - 76px)}}
