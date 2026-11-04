@@ -1,0 +1,16 @@
+/* Shared palette for the home page, guide and retained base components. */
+:root {
+  --brand-font: 'Fredoka', Arial, sans-serif;
+  --brand-background: #faf8ff;
+  --brand-text: #3d2559;
+  --brand-muted: #665676;
+  --brand-line: #dfd5ec;
+  --brand-purple: #6d3a9b;
+  --brand-purple-hover: #512573;
+  --brand-purple-dark: #352044;
+  --brand-lavender: #f0eafa;
+  --brand-turquoise: #007b91;
+  --brand-turquoise-soft: #dff7fb;
+  --brand-turquoise-button: #b5e8f2;
+  --brand-turquoise-border: #63b5c4;
+}
