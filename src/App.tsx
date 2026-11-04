@@ -39,6 +39,7 @@ export function App() {
         <button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'סגירת תפריט ×' : 'תפריט ☰'}</button>
         <nav id="main-nav" className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="ניווט ראשי">
           {nav.map(([label, id]) => <a key={id} href={'#' + id} onClick={() => setMenuOpen(false)}>{label}</a>)}
+          <a className="button gift-button nav-guide" href="/guide2" onClick={() => setMenuOpen(false)}>מדריך במתנה <span aria-hidden="true">↓</span></a>
           <ContactLink className="nav-contact">לשיחת התאמה</ContactLink>
         </nav>
       </div>
@@ -51,7 +52,7 @@ export function App() {
             <h1 id="hero-title">הדרך שלך מתחילה<br /><em>בחיבור פנימה.</em></h1>
             <p className="hero-lead">להכיר את המהות שלך, להקשיב לקול הפנימי ולמצוא כיוון שיש בו משמעות עבורך.</p>
             <p className="hero-description">אני אלייה, מטפלת רגשית ואנרגטית. אני מזמינה אותך למפגש עמוק עם עצמך, למסע של התבוננות פנימית, ריפוי והתחדשות.</p>
-            <div className="hero-actions"><ContactLink>אני רוצה למצוא את הכיוון שלי</ContactLink><a className="text-link" href="#journey">להכיר את הדרך <span aria-hidden="true">↓</span></a></div>
+            <div className="hero-actions"><a className="button gift-button hero-guide" href="/guide2">למדריך המתנה של אלייה <span aria-hidden="true">↓</span></a><ContactLink>אני רוצה למצוא את הכיוון שלי</ContactLink><a className="text-link" href="#journey">להכיר את הדרך <span aria-hidden="true">↓</span></a></div>
             <p className="quiet-note">אפשר להתחיל בשיחה. לא צריך להגיע עם כל התשובות.</p>
           </div>
           <figure className="hero-visual">
